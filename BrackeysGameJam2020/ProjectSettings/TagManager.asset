@@ -12,6 +12,9 @@ TagManager:
   - Floor
   - WaterBG
   - WindBG
+  - KeyBG
+  - Box
+  - Boundary
   layers:
   - Default
   - TransparentFX

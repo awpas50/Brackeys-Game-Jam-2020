@@ -11,10 +11,8 @@ public class GameManager : MonoBehaviour
     public Image redImage;
     public float videoSpeed;
     Player player;
-
     public float freezeTime;
 
-    //public float freezeTime = 2f;
     //void Awake()
     //{
     //    if (instance == null)
@@ -32,7 +30,6 @@ public class GameManager : MonoBehaviour
     {
         player = FindObjectOfType<Player>();
         redImage = GameObject.FindGameObjectWithTag("RedImage").GetComponent<Image>();
-
     }
 
     // Update is called once per frame

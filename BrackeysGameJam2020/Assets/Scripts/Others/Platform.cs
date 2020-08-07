@@ -8,8 +8,12 @@ public class Platform : MonoBehaviour
 
     public bool reverseable = true;
     public bool upward = true;
+    public bool right = false;
     public float speed;
     public float originalSpeed;
+
+    public bool vertical;
+    public bool horizontal;
 
     Rigidbody2D rb;
 
@@ -26,23 +30,54 @@ public class Platform : MonoBehaviour
             speed = 0;
             GetComponent<Rigidbody2D>().velocity = Vector3.zero;
         }
-        else if (upward)
+        else if(gameManager.redImage.fillAmount > 0 && gameManager.redImage.fillAmount < 1)
         {
-            speed = originalSpeed;
-            GetComponent<Rigidbody2D>().velocity = Vector3.up * speed;
+            if(vertical)
+            {
+                if (upward)
+                {
+                    speed = originalSpeed;
+                    GetComponent<Rigidbody2D>().velocity = Vector3.up * speed;
+                }
+                else if (!upward)
+                {
+                    speed = originalSpeed;
+                    GetComponent<Rigidbody2D>().velocity = Vector3.down * speed;
+                }
+            }
+            if(horizontal)
+            {
+                if (right)
+                {
+                    speed = originalSpeed;
+                    GetComponent<Rigidbody2D>().velocity = Vector3.right * speed;
+                }
+                if (!right)
+                {
+                    speed = originalSpeed;
+                    GetComponent<Rigidbody2D>().velocity = Vector3.left * speed;
+                }
+            }
+            
         }
-        else if (!upward)
-        {
-            speed = originalSpeed;
-            GetComponent<Rigidbody2D>().velocity = Vector3.down * speed;
-        }
+        
 
     }
     private void OnCollisionEnter2D(Collision2D collision)
     {
         if(collision.collider.gameObject.tag == "Floor" && reverseable)
         {
-            speed *= -1;
+            if(vertical)
+            {
+                upward = !upward;
+                speed *= -1;
+            }
+            if(horizontal)
+            {
+                right = !right;
+                speed *= -1;
+            }
+            
         }
     }
 }

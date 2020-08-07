@@ -14,7 +14,7 @@ GameObject:
   - component: {fileID: 6532968978257875600}
   - component: {fileID: 6532968978257875601}
   m_Layer: 5
-  m_Name: Small Jump Key
+  m_Name: JumpKey Small
   m_TagString: SmallJumpTrigger
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -27,9 +27,9 @@ RectTransform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6532968978257875603}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 0.97, y: 0.5, z: 1}
+  m_LocalScale: {x: 1.1069412, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0

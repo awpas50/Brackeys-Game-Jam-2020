@@ -27,9 +27,13 @@ public class Player : MonoBehaviour
     public float fGroundedRememberTime = 0.2f;
 
     public bool fTrigger = false;
+    public bool fGroundedTrigger = false;
     public bool debugMode = false;
 
     GameManager gameManager;
+    DarkLightMode DarkLightMode;
+
+    public Vector3 originalPos;
 
     void Start()
     {
@@ -41,7 +45,9 @@ public class Player : MonoBehaviour
         orignialSpeed = speed;
         orignialJumpForce = jumpForce;
         orignialSmallJumpForce = smalljumpForce;
+        DarkLightMode = FindObjectOfType<DarkLightMode>();
 
+        originalPos = transform.position;
     }
 
     private void FixedUpdate()
@@ -68,17 +74,17 @@ public class Player : MonoBehaviour
     {
         if(gameManager.freezeTime < 0)
         {
-            RaycastHit2D hit;
-            hit = Physics2D.Raycast(transform.position, Vector2.down, 1f);
-            Debug.DrawLine(transform.position, transform.position + new Vector3(0, -1f, 0), Color.green);
-            if (hit)
-            {
-                canJump = true;
-            }
-            else
-            {
-                canJump = false;
-            }
+            //RaycastHit2D hit;
+            //hit = Physics2D.Raycast(transform.position, Vector2.down, 1f);
+            //Debug.DrawLine(transform.position, transform.position + new Vector3(0, -1f, 0), Color.green);
+            //if (hit)
+            //{
+            //    canJump = true;
+            //}
+            //else
+            //{
+            //    canJump = false;
+            //}
 
             if (!debugMode)
             {
@@ -86,7 +92,7 @@ public class Player : MonoBehaviour
                 {
                     fJumpPressedRemember -= Time.deltaTime;
                 }
-                if (!canJump)
+                if(fGroundedTrigger)
                 {
                     fGroundedRemember -= Time.deltaTime;
                 }
@@ -126,6 +132,20 @@ public class Player : MonoBehaviour
         fJumpPressedRemember = 0;
         fGroundedRemember = 0;
         rb.velocity = Vector2.up * jumpForce;
+        //if (DarkLightMode == null)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    DarkLightMode.loopValue++;
+        //    if (DarkLightMode.loopValue > DarkLightMode.endPointList.Length - 1)
+        //    {
+        //        DarkLightMode.loopValue = 0;
+        //    }
+
+        //    DarkLightMode.darkLightMode = !DarkLightMode.darkLightMode;
+        //}
         canJump = false;
     }
     public void SmallJump()
@@ -133,6 +153,20 @@ public class Player : MonoBehaviour
         fJumpPressedRemember = 0;
         fGroundedRemember = 0;
         rb.velocity = Vector2.up * smalljumpForce;
+        //if (DarkLightMode == null)
+        //{
+        //    return;
+        //}
+        //else
+        //{
+        //    DarkLightMode.loopValue++;
+        //    if (DarkLightMode.loopValue > DarkLightMode.endPointList.Length - 1)
+        //    {
+        //        DarkLightMode.loopValue = 0;
+        //    }
+
+        //    DarkLightMode.darkLightMode = !DarkLightMode.darkLightMode;
+        //}
         canJump = false;
     }
 
@@ -148,11 +182,15 @@ public class Player : MonoBehaviour
             rb.gravityScale = 1;
             if (gameManager.isRewinding)
             {
-                transform.position += Vector3.right * Time.deltaTime * speed;
+                //transform.position += Vector3.right * Time.deltaTime * speed;
+                //rb.velocity = Vector2.right * speed;
+                rb.velocity = new Vector2(speed, rb.velocity.y);
             }
             else if (!gameManager.isRewinding)
             {
-                transform.position += Vector3.left * Time.deltaTime * speed;
+                //transform.position += Vector3.left * Time.deltaTime * speed;
+                //rb.MovePosition(rb.position + Vector2.left * speed * Time.fixedDeltaTime);
+                rb.velocity = new Vector2(-speed, rb.velocity.y);
             }
         }
     }
@@ -175,10 +213,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "Floor")
-        {
-            canJump = true;
-        }
         if (other.gameObject.tag == "EndPoint")
         {
             levelLoader.LoadNextLevel(SceneManager.GetActiveScene().buildIndex + 1);
@@ -189,12 +223,15 @@ public class Player : MonoBehaviour
             jumpForce = orignialJumpForce * 0.5f;
             smalljumpForce = orignialSmallJumpForce * 0.5f;
         }
-        if (other.gameObject.tag == "WindBG")
+        else if (other.gameObject.tag == "WindBG")
         {
             speed = orignialSpeed * 2;
             jumpForce = orignialJumpForce * 2;
             smalljumpForce = orignialSmallJumpForce * 2;
         }
+        if(other.gameObject.tag == "Boundary")
+        {
+            transform.position = originalPos;
+        }
     }
-
 }
