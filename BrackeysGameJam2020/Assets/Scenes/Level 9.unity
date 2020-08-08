@@ -177,7 +177,17 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 2518824628073848389, guid: 46e78df234fafac498388eac02073759,
         type: 3}
+      propertyPath: whatToTrigger.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2518824628073848389, guid: 46e78df234fafac498388eac02073759,
+        type: 3}
       propertyPath: endPointList.Array.data[0]
+      value: 
+      objectReference: {fileID: 632713724}
+    - target: {fileID: 2518824628073848389, guid: 46e78df234fafac498388eac02073759,
+        type: 3}
+      propertyPath: whatToTrigger.Array.data[0]
       value: 
       objectReference: {fileID: 632713724}
     - target: {fileID: 2518824628073848393, guid: 46e78df234fafac498388eac02073759,
@@ -1139,7 +1149,7 @@ SpriteRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 15
   m_Sprite: {fileID: 21300000, guid: 9d1d52503fdfb324e96b12f24ec37172, type: 3}
-  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 1}
+  m_Color: {r: 0.20754719, g: 0.20754719, b: 0.20754719, a: 0.59607846}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0

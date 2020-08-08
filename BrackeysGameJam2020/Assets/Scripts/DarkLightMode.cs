@@ -26,6 +26,10 @@ public class DarkLightMode : MonoBehaviour
         {
             for (int i = 0; i < endPointList.Length; i++)
             {
+                if(endPointList[i] == null)
+                {
+                    return;
+                }
                 endPointList[i].SetActive(false);
                 darkLight.SetActive(false);
             }

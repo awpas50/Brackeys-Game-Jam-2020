@@ -131,6 +131,7 @@ MonoBehaviour:
   fTrigger: 0
   fGroundedTrigger: 0
   debugMode: 0
+  originalPos: {x: 0, y: 0, z: 0}
 --- !u!61 &3136176391460931981
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -227,3 +228,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1098ddec40c055746ae3a6eb41fcf28b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  jumpKeyColor: {r: 1, g: 0.6745098, b: 0, a: 1}
+  normalJumpTriggers: []
