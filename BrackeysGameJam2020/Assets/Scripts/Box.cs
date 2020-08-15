@@ -24,14 +24,14 @@ public class Box : MonoBehaviour
 
     private void Update()
     {
-        if (gameManager.redImage.fillAmount <= 0 || gameManager.redImage.fillAmount >= 1)
-        {
-            rb.constraints = RigidbodyConstraints2D.FreezeAll;
-        }
-        if (gameManager.redImage.fillAmount > 0 && gameManager.redImage.fillAmount < 1)
-        {
-            rb.constraints = RigidbodyConstraints2D.None;
-            rb.constraints = RigidbodyConstraints2D.FreezeRotation;
-        }
+        //if (gameManager.redImage.fillAmount <= 0 || gameManager.redImage.fillAmount >= 1)
+        //{
+        //    rb.constraints = RigidbodyConstraints2D.FreezeAll;
+        //}
+        //if (gameManager.redImage.fillAmount > 0 && gameManager.redImage.fillAmount < 1)
+        //{
+        //    rb.constraints = RigidbodyConstraints2D.None;
+        //    rb.constraints = RigidbodyConstraints2D.FreezeRotation;
+        //}
     }
 }

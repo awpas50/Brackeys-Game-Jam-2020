@@ -8,6 +8,7 @@ public class PlatformSpawner : MonoBehaviour
     public Vector3 position;
 
     public float spawnTimer = 1f;
+    public float duration = 10f;
     public float nextSpawn = 0f;
 
     GameManager gameManager;
@@ -16,15 +17,6 @@ public class PlatformSpawner : MonoBehaviour
     {
         //StartCoroutine(SpawnPlatform());
         gameManager = GameObject.FindGameObjectWithTag("GameController").GetComponent<GameManager>();
-    }
-
-    IEnumerator SpawnPlatform()
-    {
-        while(true)
-        {
-            yield return new WaitForSeconds(1f);
-            
-        }
     }
 
     private void Update()
@@ -40,7 +32,7 @@ public class PlatformSpawner : MonoBehaviour
         if(nextSpawn > spawnTimer)
         {
             GameObject platformObj = Instantiate(platform, position, Quaternion.identity);
-            Destroy(platformObj, 10f);
+            Destroy(platformObj, duration);
             nextSpawn = 0f;
         }
     }

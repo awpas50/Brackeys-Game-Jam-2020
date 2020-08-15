@@ -7,7 +7,7 @@ public class CameraOffset : MonoBehaviour
     public float min;
     public float max;
 
-    public float offset;
+    //public float offset;
     GameObject player;
     
     void Start()

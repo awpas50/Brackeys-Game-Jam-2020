@@ -5,27 +5,18 @@ using UnityEngine.UI;
 
 public class PlayerCollide : MonoBehaviour
 {
+    public Animator animator;
     public Color jumpKeyColor;
     Player player;
     public GameObject[] normalJumpTriggers;
-    // Start is called before the first frame update
+
     void Start()
     {
         player = FindObjectOfType<Player>();
-        
-        normalJumpTriggers = GameObject.FindGameObjectsWithTag("NormalJumpTrigger");
     }
-
-    //private void OnCollisionEnter2D(Collision2D collision)
-    //{
-    //    if (collision.collider.gameObject.tag == "Floor")
-    //    {
-    //        player.canJump = true;
-    //    }
-    //}
     private void Update()
     {
-        //ColorUtility.TryParseHtmlString("FFAC00", out jumpKeyColor);
+        normalJumpTriggers = GameObject.FindGameObjectsWithTag("NormalJumpTrigger");
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
@@ -36,6 +27,9 @@ public class PlayerCollide : MonoBehaviour
                 normalJumpTriggers[i].GetComponent<Image>().color = jumpKeyColor;
             }
             player.canJump = true;
+
+            //Animation
+            animator.SetBool("JumpState", false);
         }
     }
 
@@ -45,8 +39,10 @@ public class PlayerCollide : MonoBehaviour
         {
             player.fGroundedRemember = player.fGroundedRememberTime;
             player.fGroundedTrigger = true;
-            
             player.canJump = false;
+
+            //Animation
+            animator.SetBool("JumpState", true);
         }
     }
 }

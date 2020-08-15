@@ -5,17 +5,29 @@ using UnityEngine;
 public class DoorTrigger : MonoBehaviour
 {
     public GameObject[] whatToTrigger;
-
+    public bool repeatable;
     private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.gameObject.tag == "Box")
         {
-            for (int i = 0; i < whatToTrigger.Length; i++)
+            if(repeatable)
             {
-                whatToTrigger[i].SetActive(true);
+                for (int i = 0; i < whatToTrigger.Length; i++)
+                {
+                    whatToTrigger[i].SetActive(true);
+                }
+                Destroy(other.gameObject);
             }
-            Destroy(other.gameObject);
-            Destroy(gameObject, 0.2f);
+            else if(!repeatable)
+            {
+                for (int i = 0; i < whatToTrigger.Length; i++)
+                {
+                    whatToTrigger[i].SetActive(true);
+                }
+                Destroy(other.gameObject);
+                Destroy(gameObject, 0.2f);
+            }
+            
         }
     }
 }

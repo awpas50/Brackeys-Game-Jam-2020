@@ -15,6 +15,11 @@ TagManager:
   - KeyBG
   - Box
   - Boundary
+  - PlayButton
+  - Subtitle
+  - AudioManager
+  - InfoBar
+  - MidIcon
   layers:
   - Default
   - TransparentFX
@@ -24,8 +29,8 @@ TagManager:
   - UI
   - 
   - 
-  - 
-  - 
+  - EndGamePlatform
+  - PostProcessing
   - 
   - 
   - 

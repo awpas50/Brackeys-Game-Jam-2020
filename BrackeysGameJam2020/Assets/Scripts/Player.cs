@@ -5,35 +5,38 @@ using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
+    [Header("Movement")]
     public float speed;
     public float jumpForce;
     public float smalljumpForce;
-
     private float orignialSpeed;
     public float orignialJumpForce;
     public float orignialSmallJumpForce;
 
     private float moveInput;
     private Rigidbody2D rb;
-    LevelLoader levelLoader;
-
-    private bool facingRight = false;
-    public bool canJump;
-
-    public float fJumpPressedRemember;
-    public float fJumpPressedRememberTime = 0.2f;
-
-    public float fGroundedRemember;
-    public float fGroundedRememberTime = 0.2f;
-
-    public bool fTrigger = false;
-    public bool fGroundedTrigger = false;
-    public bool debugMode = false;
-
+    private LevelLoader levelLoader;
     GameManager gameManager;
     DarkLightMode DarkLightMode;
 
+    [Header("Jump state")]
+    private bool facingRight = false;
+    public bool canJump;
+
+    [Header("Jump optimization")]
+    public float fJumpPressedRemember;
+    public float fJumpPressedRememberTime = 0.2f;
+    public float fGroundedRemember;
+    public float fGroundedRememberTime = 0.2f;
+    public bool fTrigger = false;
+    public bool fGroundedTrigger = false;
+
+    public bool debugMode = false;
+    [Header("Respawn")]
     public Vector3 originalPos;
+    
+    [Header("Animation")]
+    public Animator animator;
 
     void Start()
     {
@@ -52,71 +55,61 @@ public class Player : MonoBehaviour
 
     private void FixedUpdate()
     {
-        if(gameManager.freezeTime < 0)
+        //if (Input.GetKeyDown(KeyCode.M))
+        //{
+        //    debugMode = !debugMode;
+        //}
+        if (debugMode)
         {
-            if (Input.GetKeyDown(KeyCode.M))
-            {
-                debugMode = !debugMode;
-            }
-            if (debugMode)
-            {
-                NormalMovement();
-            }
-            else
-            {
-                RewindMovement();
-            }
+            NormalMovement();
         }
-        
+        else
+        {
+            RewindMovement();
+        }
     }
 
     private void Update()
     {
-        if(gameManager.freezeTime < 0)
+        //RaycastHit2D hit;
+        //hit = Physics2D.Raycast(transform.position, Vector2.down, 1f);
+        //Debug.DrawLine(transform.position, transform.position + new Vector3(0, -1f, 0), Color.green);
+        //if (hit)
+        //{
+        //    canJump = true;
+        //}
+        //else
+        //{
+        //    canJump = false;
+        //}
+        if (!debugMode)
         {
-            //RaycastHit2D hit;
-            //hit = Physics2D.Raycast(transform.position, Vector2.down, 1f);
-            //Debug.DrawLine(transform.position, transform.position + new Vector3(0, -1f, 0), Color.green);
-            //if (hit)
-            //{
-            //    canJump = true;
-            //}
-            //else
-            //{
-            //    canJump = false;
-            //}
-
-            if (!debugMode)
+            if (fTrigger)
             {
-                if (fTrigger)
-                {
-                    fJumpPressedRemember -= Time.deltaTime;
-                }
-                if(fGroundedTrigger)
-                {
-                    fGroundedRemember -= Time.deltaTime;
-                }
-                if (canJump)
-                {
-                    fGroundedRemember = fGroundedRememberTime;
-                }
+                fJumpPressedRemember -= Time.deltaTime;
             }
-
-            if (debugMode)
+            if (fGroundedTrigger)
             {
-                if (canJump && Input.GetKeyDown(KeyCode.Space))
-                {
-                    Jump();
-                }
-                if (canJump && Input.GetKeyDown(KeyCode.C))
-                {
-                    SmallJump();
-                }
-                moveInput = Input.GetAxis("Horizontal");
-                rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+                fGroundedRemember -= Time.deltaTime;
+            }
+            if (canJump)
+            {
+                fGroundedRemember = fGroundedRememberTime;
             }
         }
-        
+        if (debugMode)
+        {
+            if (canJump && Input.GetKeyDown(KeyCode.Space))
+            {
+                Jump();
+            }
+            if (canJump && Input.GetKeyDown(KeyCode.C))
+            {
+                SmallJump();
+            }
+            moveInput = Input.GetAxis("Horizontal");
+            rb.velocity = new Vector2(moveInput * speed, rb.velocity.y);
+        }
     }
 
     public void Flip()
@@ -176,10 +169,13 @@ public class Player : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             rb.gravityScale = 0;
+            //Animation
+            animator.speed = 0;
         }
         else
         {
             rb.gravityScale = 1;
+            animator.speed = 1;
             if (gameManager.isRewinding)
             {
                 //transform.position += Vector3.right * Time.deltaTime * speed;
@@ -215,23 +211,46 @@ public class Player : MonoBehaviour
     {
         if (other.gameObject.tag == "EndPoint")
         {
-            levelLoader.LoadNextLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            if (SceneManager.GetActiveScene().buildIndex == 8) // level 10
+            {
+                levelLoader.LoadNextLevel(0);
+            }
+            else
+            {
+                levelLoader.LoadNextLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+                
+            
         }
         if (other.gameObject.tag == "WaterBG")
         {
-            speed = orignialSpeed * 0.5f;
-            jumpForce = orignialJumpForce * 0.5f;
-            smalljumpForce = orignialSmallJumpForce * 0.5f;
+            speed = orignialSpeed * 0.6f;
+            jumpForce = orignialJumpForce * 0.6f;
+            smalljumpForce = orignialSmallJumpForce * 0.6f;
+            animator.speed = 0.6f;
         }
-        else if (other.gameObject.tag == "WindBG")
+        if (other.gameObject.tag == "WindBG")
         {
             speed = orignialSpeed * 2;
             jumpForce = orignialJumpForce * 2;
             smalljumpForce = orignialSmallJumpForce * 2;
+            animator.speed = 2;
         }
         if(other.gameObject.tag == "Boundary")
         {
             transform.position = originalPos;
+            canJump = true;
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "WaterBG" || other.gameObject.tag == "WindBG")
+        {
+            speed = orignialSpeed * 1;
+            jumpForce = orignialJumpForce * 1;
+            smalljumpForce = orignialSmallJumpForce * 1;
+            animator.speed = 1;
         }
     }
 }
