@@ -44,7 +44,7 @@ AudioSource:
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 8300000, guid: df98e5d0d4d6d9f4e95b1a3f5eeec841, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 0.8
+  m_Volume: 0.4
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -140,3 +140,40 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e0b5917a09cae694daf663717537c3c1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  sounds:
+  - clip: {fileID: 8300000, guid: 2b709f7486b701f4486ac437170701dc, type: 3}
+    soundList: 0
+    source: {fileID: 0}
+    volume: 1
+    pitch: 1
+    reverbZoneMix: 0
+  - clip: {fileID: 8300000, guid: 1e3e63b6e179c474aac97d9f891a08f5, type: 3}
+    soundList: 1
+    source: {fileID: 0}
+    volume: 1.2
+    pitch: 1
+    reverbZoneMix: 0
+  - clip: {fileID: 8300000, guid: be4ba2113dced41499fb388e619ccea4, type: 3}
+    soundList: 2
+    source: {fileID: 0}
+    volume: 1.5
+    pitch: 1
+    reverbZoneMix: 0
+  - clip: {fileID: 8300000, guid: fa95b9c3fbae1584f9a4973e3899f9dd, type: 3}
+    soundList: 3
+    source: {fileID: 0}
+    volume: 1
+    pitch: 1
+    reverbZoneMix: 0
+  - clip: {fileID: 8300000, guid: d532cb3a32fa09c49bf2ecf858fd88b0, type: 3}
+    soundList: 4
+    source: {fileID: 0}
+    volume: 0.8
+    pitch: 1
+    reverbZoneMix: 0
+  - clip: {fileID: 8300000, guid: bd85c10633f6c3647a057e5676ecbea0, type: 3}
+    soundList: 5
+    source: {fileID: 0}
+    volume: 0.8
+    pitch: 1
+    reverbZoneMix: 0

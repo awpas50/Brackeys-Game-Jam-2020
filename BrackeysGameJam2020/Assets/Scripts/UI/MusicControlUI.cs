@@ -12,19 +12,21 @@ public class MusicControlUI : MonoBehaviour
 
     void Start()
     {
-        AudioSrc = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
+        //AudioSrc = GameObject.FindGameObjectWithTag("AudioManager").GetComponent<AudioSource>();
         // Keep scroll value from the previous level.
-        scrollbar.value = AudioSrc.volume;
+        //scrollbar.value = AudioSrc.volume;
+        scrollbar.value = AudioListener.volume;
     }
 
     void Update()
     {
-        AudioSrc.volume = AudioVolume;
+        //AudioSrc.volume = AudioVolume;
         SetVolume(scrollbar.value);
     }
 
     public void SetVolume(float vol)
     {
-        AudioVolume = vol;
+        //AudioVolume = vol;
+        AudioListener.volume = vol;
     }
 }
