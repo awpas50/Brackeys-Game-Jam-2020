@@ -1068,8 +1068,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   subtitleState: 1
-  sprite1: {fileID: 4788415332691018101, guid: 7fe13bb7bf90e7c47b71c7c1238056e9, type: 3}
-  sprite2: {fileID: 1007463920415347298, guid: 7fe13bb7bf90e7c47b71c7c1238056e9, type: 3}
+  sprite1: {fileID: 1007463920415347298, guid: 7fe13bb7bf90e7c47b71c7c1238056e9, type: 3}
+  sprite2: {fileID: 4788415332691018101, guid: 7fe13bb7bf90e7c47b71c7c1238056e9, type: 3}
 --- !u!114 &1775429219163667453
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1083,7 +1083,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}

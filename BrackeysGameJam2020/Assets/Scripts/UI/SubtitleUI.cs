@@ -26,7 +26,7 @@ public class SubtitleUI : MonoBehaviour
                 allSubtitle[i].SetActive(true);
             }
         }
-        else if(!subtitleState)
+        if(!subtitleState)
         {
             for (int i = 0; i < allSubtitle.Length; i++)
             {

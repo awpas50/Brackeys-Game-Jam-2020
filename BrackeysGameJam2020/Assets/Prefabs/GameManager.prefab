@@ -50,9 +50,10 @@ MonoBehaviour:
   pause: {fileID: 5314350741217743426, guid: 7fe13bb7bf90e7c47b71c7c1238056e9, type: 3}
   play: {fileID: 3324241789311962111, guid: 7fe13bb7bf90e7c47b71c7c1238056e9, type: 3}
   InfoBar: {fileID: 0}
-  InfoBarfreezeTime: 0
+  InfoBarfreezeTime: 4
   Icon_Middle: {fileID: 0}
   pause_middle: {fileID: 5793170646636601163, guid: 7fe13bb7bf90e7c47b71c7c1238056e9,
     type: 3}
   play_middle: {fileID: -3031487600396135671, guid: 7fe13bb7bf90e7c47b71c7c1238056e9,
     type: 3}
+  midIconAnim: {fileID: 0}
