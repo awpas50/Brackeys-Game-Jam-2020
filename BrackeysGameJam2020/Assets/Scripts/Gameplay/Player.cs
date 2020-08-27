@@ -210,19 +210,6 @@ public class Player : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-        if (other.gameObject.tag == "EndPoint")
-        {
-            if (SceneManager.GetActiveScene().buildIndex == 9) // level 10
-            {
-                levelLoader.LoadNextLevel(0);
-            }
-            else
-            {
-                levelLoader.LoadNextLevel(SceneManager.GetActiveScene().buildIndex + 1);
-            }
-                
-            
-        }
         if (other.gameObject.tag == "WaterBG")
         {
             speed = orignialSpeed * 0.6f;
@@ -237,6 +224,24 @@ public class Player : MonoBehaviour
             smalljumpForce = orignialSmallJumpForce * 2;
             animator.speed = 2;
         }
+        if (other.gameObject.tag == "NormalBG")
+        {
+            speed = orignialSpeed * 1;
+            jumpForce = orignialJumpForce * 1;
+            smalljumpForce = orignialSmallJumpForce * 1;
+            animator.speed = 1;
+        }
+        if (other.gameObject.tag == "EndPoint")
+        {
+            if (SceneManager.GetActiveScene().buildIndex == 9) // level 10
+            {
+                levelLoader.LoadNextLevel(0);
+            }
+            else
+            {
+                levelLoader.LoadNextLevel(SceneManager.GetActiveScene().buildIndex + 1);
+            }
+        }
         if(other.gameObject.tag == "Boundary")
         {
             transform.position = originalPos;
@@ -246,12 +251,12 @@ public class Player : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (other.gameObject.tag == "WaterBG" || other.gameObject.tag == "WindBG")
-        {
-            speed = orignialSpeed * 1;
-            jumpForce = orignialJumpForce * 1;
-            smalljumpForce = orignialSmallJumpForce * 1;
-            animator.speed = 1;
-        }
+        //if (other.gameObject.tag == "WaterBG" || other.gameObject.tag == "WindBG")
+        //{
+        //    speed = orignialSpeed * 1;
+        //    jumpForce = orignialJumpForce * 1;
+        //    smalljumpForce = orignialSmallJumpForce * 1;
+        //    animator.speed = 1;
+        //}
     }
 }

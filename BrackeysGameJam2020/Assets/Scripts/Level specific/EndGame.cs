@@ -8,6 +8,7 @@ public class EndGame : MonoBehaviour
     public bool endGame = false;
     public GameObject endGamePlatform;
     public GameObject platformSpawner;
+    public GameObject endGameCanvas;
     void Start()
     {
     }
@@ -19,6 +20,7 @@ public class EndGame : MonoBehaviour
             endGame = true;
             endGamePlatform.SetActive(true);
             platformSpawner.SetActive(false);
+            endGameCanvas.SetActive(true);
         }
     }
 }

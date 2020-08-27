@@ -171,6 +171,12 @@ MonoBehaviour:
     volume: 0.8
     pitch: 1
     reverbZoneMix: 0
+  - clip: {fileID: 8300000, guid: 6e746982292c09949b2c1e381cb90f1c, type: 3}
+    soundList: 6
+    source: {fileID: 0}
+    volume: 0.8
+    pitch: 1
+    reverbZoneMix: 0
   - clip: {fileID: 8300000, guid: bd85c10633f6c3647a057e5676ecbea0, type: 3}
     soundList: 5
     source: {fileID: 0}

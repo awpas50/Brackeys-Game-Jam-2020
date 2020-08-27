@@ -16,6 +16,7 @@ public class DoorTrigger : MonoBehaviour
                 {
                     whatToTrigger[i].SetActive(true);
                 }
+                AudioManager.instance.Play(SoundList.KeyUnlock);
                 Destroy(other.gameObject);
             }
             else if(!repeatable)
@@ -25,6 +26,7 @@ public class DoorTrigger : MonoBehaviour
                     whatToTrigger[i].SetActive(true);
                 }
                 Destroy(other.gameObject);
+                AudioManager.instance.Play(SoundList.KeyUnlock);
                 Destroy(gameObject, 0.2f);
             }
             

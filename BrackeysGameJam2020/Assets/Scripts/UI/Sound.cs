@@ -9,7 +9,8 @@ public enum SoundList
     DarkModeSwitchSound2,
     DarkModeSwitchSound3,
     Impact1,
-    Impact2
+    Impact2,
+    KeyUnlock
 }
 
 [System.Serializable]
